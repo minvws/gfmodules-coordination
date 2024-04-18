@@ -41,7 +41,7 @@ Details about documentation and implementation can be found at the
 ### Localisation Register
 
 The Localisation Register is responsible for the localisation of the Health Data. The Localisation
-Register has a register that contains which Health Provider has data for which pseudonym and data domain. 
+Register contains the register that associates Health Provider with pseudonym and data domain. 
 
 Details about documentation and implementation can be found at the
 [Localisation Register repository](https://github.com/minvws/nl-irealisatie-zmodules-localisation-register)
