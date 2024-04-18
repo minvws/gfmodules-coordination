@@ -8,8 +8,8 @@ various applications.
 
 ## Introduction
 
-The zModules project is a collection of applications that have the purpose to improve the
-data exchange between healthcare providers.
+The zModules project is a collection of applications that have the purpose of improving the
+data exchange process between healthcare providers.
 
 ## Architecture
 
