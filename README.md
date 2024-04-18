@@ -46,21 +46,21 @@ Register has a register that contains which Health Provider has data for which p
 Details about documentation and implementation can be found at the
 [Localisation Register repository](https://github.com/minvws/nl-irealisatie-zmodules-localisation-register)
 
-### Addressing Service
+### Addressing Register
 
-The Addressing Service holds the information about the various Health Data endpoints that are available
-for fetching the metadata. The information of the Addressing Service should be enough for the Timeline
+The Addressing Register holds the information about the various Health Data endpoints that are available
+for fetching the metadata. The information of the Addressing Register should be enough for the Timeline
 Service or the Health application to fetch the actual metadata.
 
 Details about documentation and implementation can be found at the
-[Addressing Service repository](https://github.com/minvws/nl-irealisatie-zmodules-addressing-service)
+[Addressing Register repository](https://github.com/minvws/nl-irealisatie-zmodules-addressing-register)
 
 ### Metadata Register
 
 The Metadata Register is an addressable register that should be contain all the metadata of
 all the pseudonyms that it is responsible for. There are multiple metadata registers divided over
 the health landscape. In the end, all health data should have corresponding metadata available on one of the available
-metadata registers. The Metadata Register endpoints should be described in the Addressing Service.
+metadata registers. The Metadata Register endpoints should be described in the Addressing Register.
 The Localisation Register should contain entries for all the metadata in the Metadata Register.
 
 The [Metadata Register repository](https://github.com/minvws/nl-irealisatie-zmodules-metadata-register)
