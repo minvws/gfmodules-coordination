@@ -57,7 +57,7 @@ Details about documentation and implementation can be found at the
 
 ### Metadata Register
 
-The Metadata Register is an addressable register that should be contain all the metadata of
+The Metadata Register is an addressable register that contains metadata of
 all the pseudonyms that it is responsible for. There are multiple metadata registers divided over
 the health landscape. In the end, all health data should have corresponding metadata available on one of the available
 metadata registers. The Metadata Register endpoints should be described in the Addressing Register.
