@@ -55,7 +55,7 @@ Details about documentation and implementation can be found at the
 ### Localisation Register
 
 The Localisation Register is responsible for the localisation of the Health Data. The Localisation
-Register has a register that contains which Health Provider has data for which pseudonym and data domain. 
+Register contains the register that associates Health Provider with pseudonym and data domain. 
 
 Details about documentation and implementation can be found at the
 [Localisation Register repository](https://github.com/minvws/nl-irealisatie-zmodules-localisation-register)
@@ -71,7 +71,7 @@ Details about documentation and implementation can be found at the
 
 ### Metadata Register
 
-The Metadata Register is an addressable register that should be contain all the metadata of
+The Metadata Register is an addressable register that contains metadata of
 all the pseudonyms that it is responsible for. There are multiple metadata registers divided over
 the health landscape. In the end, all health data should have corresponding metadata available on one of the available
 metadata registers. The Metadata Register endpoints should be described in the Addressing Register.
