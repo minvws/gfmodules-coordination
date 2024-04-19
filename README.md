@@ -9,7 +9,21 @@ various applications.
 ## Introduction
 
 The zModules project is a collection of applications that have the purpose to improve the
-data exchange between healthcare providers.
+data exchange between healthcare providers. This project is the technical implementation of 
+the various components of the 'Generieke Functies, lokalisatie en addressering' project of the 
+Ministry of Health, Welfare and Sport of the Dutch goverment.
+
+See the table below for an overview of the currently identified components.
+
+| Project name                                              | Technical component name                        |
+|-----------------------------------------------------------|-------------------------------------------------|
+| GF Localisatie, module Lokalisatie Metadataregister (LMR) | [Metadata Register](#metadata-register)         |
+| Module Kwalificatieregister                               |                                                 |
+| GF Lokalisatie, module Lokalisatie register service (LRS) | [Localisation Register](#localisation-register) |
+| GF Lokalisatie, module nationale Verwijsindex (NVI)       | [Timeline Service](#timeline-service)           |
+| GF Lokalisatie, module polymorfe pseudonimisering         | [Pseudonym Service](#pseudonym-service)         |
+| Module Logging                                            |                                                 |
+| GF Addressering                                           | [Addressing Register](#addressing-register)     |
 
 ## Architecture
 
