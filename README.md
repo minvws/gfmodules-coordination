@@ -19,8 +19,8 @@ See the table below for an overview of the currently identified components.
 |-----------------------------------------------------------|-------------------------------------------------|
 | GF Localisatie, module Lokalisatie Metadataregister (LMR) | [Metadata Register](#metadata-register)         |
 | Module Kwalificatieregister                               |                                                 |
-| GF Lokalisatie, module Lokalisatie register service (LRS) | [Localisation Register](#localisation-register) |
-| GF Lokalisatie, module nationale Verwijsindex (NVI)       | [Timeline Service](#timeline-service)           |
+| GF Lokalisatie, module Lokalisatie register service (LRS) | [Timeline Service](#timeline-service)           |
+| GF Lokalisatie, module nationale Verwijsindex (NVI)       | [Localisation Register](#localisation-register) |
 | GF Lokalisatie, module polymorfe pseudonimisering         | [Pseudonym Service](#pseudonym-service)         |
 | Module Logging                                            |                                                 |
 | GF Addressering                                           | [Addressing Register](#addressing-register)     |
