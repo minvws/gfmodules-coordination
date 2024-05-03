@@ -32,7 +32,7 @@ for healthcare applications to connect directly to the underlying services.
 When step 5 is finished, a healthcare application can request the actual data using the
 metadata that is fetched in step 5.
 
-![alt text](assets/system.png "system")
+![alt text](assets/system-components.png "system")
 
 ## Components
 
