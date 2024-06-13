@@ -83,6 +83,19 @@ can be found at the repository.
 
 ## Development
 
+If this is the first time you want to setup all the above components you can run:
+
+```sh
+tools/./script.sh --autopilot
+```
+
+When you want to clear the current state and reinstall everything with the default database migrations you can run:
+
+```sh
+tools/./script.sh --remove --clear-config --autopilot
+```
+
+To setup all the applications you may run the 'tools/script.sh' script top setup
 How to setup the applications to run locally is described at the repositories itself.
 
 | Service      | Exposed http url        | Repository link                                                           |
