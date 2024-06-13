@@ -50,11 +50,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if "$REMOVE" && "$AUTOPILOT" ; then
-    echo "Please run the script again with only the remove option."
-    exit 1
-fi
-
 SCRIPT=$(readlink -f $0)
 BASEDIR=`dirname $SCRIPT`/../../
 
@@ -68,30 +63,39 @@ for module in $MODULES ; do
   fi
 done
 
+if "$REMOVE" || "$CLEAR_CONFIG" ; then
+    for module in $MODULES ; do
+      cd $BASEDIR/${module}
+      echo "=== ${module} ==="
+      if "$REMOVE" ; then
+        docker compose stop
+        docker compose rm -f
+      fi
+      if "$CLEAR_CONFIG" ; then
+        rm app.conf || true
+        rm .env.local || true
+        rm .autopilot || true
+      fi
+      echo "==="
+    done
+fi
 
-for module in $MODULES ; do
+if "$AUTOPILOT"; then
+    for module in $MODULES ; do
+        echo "=== make autopilot in ${module} ==="
+        cd $BASEDIR/${module}
+        make autopilot
+        echo "==="
+    done
+fi
 
-  cd $BASEDIR/${module}
-  echo "=== ${module} ==="
-  if "$REMOVE" ; then
-    docker compose stop
-    docker compose rm -f
-  fi
-  if "$CLEAR_CONFIG" ; then
-    rm app.conf || true
-    rm .env.local || true
-    rm .autopilot || true
-  fi
-  if "$AUTOPILOT"; then
-    make autopilot
-  fi
-  if [[ ! -z "$COMMAND" ]] ; then
-    $COMMAND
-  fi
-
-  echo "==="
-done
-
+if [[ ! -z "$COMMAND" ]] ; then
+    for module in $MODULES ; do
+        echo "=== run '$COMMAND' in ${module} ==="
+        cd $BASEDIR/${module}
+        $COMMAND
+    done
+fi
 
 if "$AUTOPILOT"; then
   cat << "EOF"
