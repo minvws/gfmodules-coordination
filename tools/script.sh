@@ -15,8 +15,8 @@ function display_usage() {
     echo "Usage: $0 [-h|--help] [-r|--remove] [-c|--clear-config] [-a|--autopilot] [-- command]"
     echo "Options:"
     echo "  -h, --help                      Display this help message"
-    echo "  -r, --remove                    Install packages"
-    echo "  -c, --clear-config              Copy the env files from the example files in each repository"
+    echo "  -r, --remove                    Docker compose stop and remove"
+    echo "  -c, --clear-config              Remove the local config files"
     echo "  -a, --autopilot                 Copy the env files from the example files in each repository"
     echo "  --                              Everything behind the -- is executed in every module"
     exit 1
@@ -43,6 +43,7 @@ while [[ $# -gt 0 ]]; do
         -- )
             shift
             COMMAND=$@
+            break
             ;;
         *)
             shift
@@ -93,7 +94,7 @@ if [[ ! -z "$COMMAND" ]] ; then
     for module in $MODULES ; do
         echo "=== run '$COMMAND' in ${module} ==="
         cd $BASEDIR/${module}
-        $COMMAND
+        eval $COMMAND
     done
 fi
 
