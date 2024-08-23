@@ -98,7 +98,7 @@ tools/./script.sh --autopilot
 When you want to clear the current state and reinstall everything with the default database migrations you can run:
 
 ```sh
-tools/./script.sh --remove --clear-config --autopilot
+tools/./script.sh --remove --clear-config --autopilot --build
 ```
 
 To setup all the applications you may run the 'tools/script.sh' script top setup
