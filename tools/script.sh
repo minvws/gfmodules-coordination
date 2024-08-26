@@ -7,8 +7,7 @@ ARGUMENTS="$@"
 REMOVE=false
 CLEAR_CONFIG=false
 AUTOPILOT=false
-COMMAND=
-
+BUILD=false
 
 # Function to display script usage
 function display_usage() {
@@ -18,6 +17,7 @@ function display_usage() {
     echo "  -r, --remove                    Docker compose stop and remove"
     echo "  -c, --clear-config              Remove the local config files"
     echo "  -a, --autopilot                 Copy the env files from the example files in each repository"
+    echo "  -b  --build                     Rebuild the docker containers"
     echo "  --                              Everything behind the -- is executed in every module"
     exit 1
 }
@@ -40,10 +40,9 @@ while [[ $# -gt 0 ]]; do
             AUTOPILOT=true
             shift
             ;;
-        -- )
+        -b | --build)
+            BUILD=true
             shift
-            COMMAND=$@
-            break
             ;;
         *)
             shift
@@ -65,6 +64,12 @@ for module in $MODULES ; do
 done
 
 if "$REMOVE" || "$CLEAR_CONFIG" ; then
+    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    if "$REMOVE" ; then
+      docker compose stop
+      docker compose rm -f
+    fi
+
     for module in $MODULES ; do
       cd $BASEDIR/${module}
       echo "=== ${module} ==="
@@ -82,19 +87,25 @@ if "$REMOVE" || "$CLEAR_CONFIG" ; then
 fi
 
 if "$AUTOPILOT"; then
+    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    if "$BUILD"; then
+      docker compose build
+    fi
+    docker compose up -d --remove-orphans
     for module in $MODULES ; do
-        echo "=== make autopilot in ${module} ==="
+        echo "=== Start ${module} with preconfigured autopilot configuration ==="
         cd $BASEDIR/${module}
-        make autopilot
-        echo "==="
-    done
-fi
 
-if [[ ! -z "$COMMAND" ]] ; then
-    for module in $MODULES ; do
-        echo "=== run '$COMMAND' in ${module} ==="
-        cd $BASEDIR/${module}
-        eval $COMMAND
+        if [ -e tools/autopilot.sh ]; then
+          tools/./autopilot.sh
+        else
+          if "$BUILD"; then
+            docker compose build
+          fi
+          docker compose up -d --remove-orphans
+        fi
+
+        echo "==="
     done
 fi
 

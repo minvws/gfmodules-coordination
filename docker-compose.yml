@@ -1,0 +1,58 @@
+services:
+  init:
+    image: alpine:3.14
+    build:
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./docker/init.sh:/init.sh
+      - ./secrets:/secrets
+      - ./tools:/tools
+    command: /init.sh
+
+  secrets:
+    image: httpd:latest
+    container_name: apache_secrets
+    volumes:
+      - ./secrets:/usr/local/apache2/htdocs
+    networks:
+      zmodules:
+        aliases:
+          - secrets
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    ports:
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 4317:4317
+      - 4318:4318
+      - 14250:14250
+      - 14268:14268
+      - 14269:14269
+      - 9411:9411
+    networks:
+      zmodules:
+        aliases:
+          - tracing
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - 8010:80
+      - 2003:2003
+      - 2004:2004
+      - 2023:2023
+      - 2024:2024
+      - 8125:8125/udp
+      - 8126:8126
+    networks:
+      - zmodules
+
+networks:
+  zmodules:
+    driver: bridge
+    name: zmodules
