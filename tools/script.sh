@@ -64,7 +64,7 @@ for module in $MODULES ; do
 done
 
 if "$REMOVE" || "$CLEAR_CONFIG" ; then
-    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    cd $BASEDIR/gfmodules-coordination
     if "$REMOVE" ; then
       docker compose stop
       docker compose rm -f
@@ -87,7 +87,7 @@ if "$REMOVE" || "$CLEAR_CONFIG" ; then
 fi
 
 if "$AUTOPILOT"; then
-    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    cd $BASEDIR/gfmodules-coordination
     if "$BUILD"; then
       docker compose build
     fi
