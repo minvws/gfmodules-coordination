@@ -80,6 +80,7 @@ create_uzi_key_pair () {
       -copy_extensions copyall \
       -out $full_base.crt
     rm $full_base.csr
+    chmod +r $full_base.key
   fi
 }
 
