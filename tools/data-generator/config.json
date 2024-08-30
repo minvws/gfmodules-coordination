@@ -1,0 +1,44 @@
+{
+  "_bsn_comment": "The BSN range is used to generate a random BSN for the pseudonym service",
+  "bsn": {
+    "start": 950000000,
+    "end": 9500000999
+  },
+
+  "_unknown_metadata_comment": "The unknown_metadata_probability is the probability that the metadata service will return an unknown metadata",
+  "unknown_metadata_probability": 0.3,
+  "unknown_metadata_endpoint": "https://example.org/resource",
+
+  "_provider_id_comment": "The provider_id is a unique identifier for the service provider",
+  "provider_id": "f0928618-d059-4458-ba52-54a40bf379bf",
+
+  "endpoints": {
+    "localisation": {
+      "_url_comment": "The URL of the localisation service",
+      "url": "http://localhost:8501"
+    },
+    "addressing": {
+      "url": "http://localhost:8502"
+    },
+    "pseudonym": {
+      "url": "http://localhost:8504"
+    }
+  },
+  "_metadata_endpoints_comment": "The metadata_endpoints is a list of metadata services. There can be multiple and a random will be chosen",
+  "metadata_endpoints": {
+    "metadata_a": {
+      "_url_comment": "The URL of the metadata service",
+      "url": "http://localhost:8503",
+
+      "_endpoint_comment": "The endpoint that will be added to the addressing. This is what the timeline service will use to get the metadata",
+      "endpoint": "http://metadata:8503/resource"
+    }
+  },
+
+  "_uzi_mtls_comment": "The uzi_mtls is used to enable mTLS for the UZI service",
+  "uzi_mtls": {
+    "enabled": false,
+    "cert": "certs/cert.pem",
+    "key": "certs/key.pem"
+  }
+}
