@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -11,17 +12,27 @@ import (
 )
 
 const (
-	URL         = "https://pgodemo.test.zm.irealisatie.nl/"
-	ThreadCount = 10
-	MinDelay    = 5
-	MaxDelay    = 30
+	URL = "https://pgodemo.test.zm.irealisatie.nl/"
 )
 
 func main() {
-	for i := 0; i < ThreadCount; i++ {
+	threads := flag.Int("threads", 0, "Number of go routines to use")
+	minDelay := flag.Int("min-delay", 10, "Minimum delay in seconds")
+	maxDelay := flag.Int("max-delay", 30, "Maximum delay in seconds")
+	endpoint := flag.String("endpoint", URL, "URL endpoint to send requests to")
+
+	// Parse command-line arguments
+	flag.Parse()
+
+	if *threads <= 0 {
+		println("Usage: trafgen -threads <number of threads> -min-delay <min delay> -max-delay <max delay> -endpoint <url>")
+		return
+	}
+
+	for i := 0; i < *threads; i++ {
 		var threadId = i
 		go func() {
-			trafgen(threadId)
+			trafgen(threadId, *endpoint, *minDelay, *maxDelay)
 		}()
 	}
 
@@ -30,18 +41,28 @@ func main() {
 	}
 }
 
-func trafgen(threadNr int) {
-	// Delay first request
-	delay := time.Duration(rand.Intn(MaxDelay-MinDelay)+MinDelay) / 2
-	println("Thread", threadNr, "Delay:", delay)
-	time.Sleep(delay * time.Second)
+func trafgen(threadNr int, endpoint string, minDelay int, maxDelay int) {
+	if maxDelay-minDelay > 0 {
+		// Delay first request
+		delay := time.Duration(rand.Intn(maxDelay-minDelay)+minDelay) / 2
+		println("Thread", threadNr, "Delay:", delay)
+		time.Sleep(delay * time.Second)
+	}
 
 	for {
-		token, cookie := fetchCsrfTokenAndCookie()
-		time.Sleep(1 * time.Second)
+		token, cookie := fetchCsrfTokenAndCookie(endpoint)
+		time.Sleep(500 * time.Millisecond)
+		if token == "" {
+			println("Thread", threadNr, "Error fetching token")
+			continue
+		}
 
-		status := submitForm("950000012", "beeldbank", token, cookie)
-		delay := time.Duration(rand.Intn(MaxDelay-MinDelay) + MinDelay)
+		status := submitForm(endpoint, "950000012", "beeldbank", token, cookie)
+
+		delay := 0 * time.Second
+		if maxDelay-minDelay > 0 {
+			delay = time.Duration(rand.Intn(maxDelay-minDelay) + minDelay)
+		}
 
 		println("Thread", threadNr, "Status:", status, "Delay:", delay)
 
@@ -49,7 +70,7 @@ func trafgen(threadNr int) {
 	}
 }
 
-func submitForm(bsn, dataDomain, token string, cookie http.Cookie) string {
+func submitForm(endpoint, bsn, dataDomain, token string, cookie http.Cookie) string {
 	println("Submitting form with BSN:", bsn, "Data domain:", dataDomain, "Token:", token, "Cookie:", cookie.Raw)
 
 	data := url.Values{}
@@ -57,7 +78,7 @@ func submitForm(bsn, dataDomain, token string, cookie http.Cookie) string {
 	data.Set("form[data_domain]", dataDomain)
 	data.Set("form[_token]", token)
 
-	r, _ := http.NewRequest(http.MethodPost, URL, strings.NewReader(data.Encode()))
+	r, _ := http.NewRequest(http.MethodPost, endpoint, strings.NewReader(data.Encode()))
 	r.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	r.AddCookie(&cookie)
 
@@ -75,20 +96,20 @@ func submitForm(bsn, dataDomain, token string, cookie http.Cookie) string {
 	return resp.Status
 }
 
-func fetchCsrfTokenAndCookie() (string, http.Cookie) {
+func fetchCsrfTokenAndCookie(endpoint string) (string, http.Cookie) {
 	var cookie = http.Cookie{}
 	var token = ""
 
-	r, _ := http.NewRequest(http.MethodGet, URL, nil)
+	r, _ := http.NewRequest(http.MethodGet, endpoint, nil)
 	client := &http.Client{}
 	resp, err := client.Do(r)
 	if err != nil {
-		panic(err)
+		return "", http.Cookie{}
 	}
 
 	doc, err := htmlquery.Parse(resp.Body)
 	if err != nil {
-		panic(err)
+		return "", http.Cookie{}
 	}
 
 	err = resp.Body.Close()
