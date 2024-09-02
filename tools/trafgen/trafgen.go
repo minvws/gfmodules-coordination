@@ -12,7 +12,7 @@ import (
 
 const (
 	URL         = "https://pgodemo.test.zm.irealisatie.nl/"
-	ThreadCount = 15
+	ThreadCount = 10
 	MinDelay    = 5
 	MaxDelay    = 30
 )
@@ -26,6 +26,7 @@ func main() {
 	}
 
 	for {
+		time.Sleep(1 * time.Second)
 	}
 }
 
