@@ -55,7 +55,7 @@ BASEDIR=`dirname $SCRIPT`/../../
 
 cd $BASEDIR
 
-MODULES="nl-irealisatie-zmodules-pgo-demo nl-irealisatie-zmodules-addressing-register gfmodules-localization-register-service gfmodules-localization-metadata-register nl-irealisatie-zmodules-pseudonym-service"
+MODULES="nl-irealisatie-zmodules-pgo-demo nl-irealisatie-zmodules-addressing-register gfmodules-national-referral-index gfmodules-localization-register-service gfmodules-localization-metadata-register nl-irealisatie-zmodules-pseudonym-service"
 
 for module in $MODULES ; do
   if [ ! -d "$module" ] ; then
