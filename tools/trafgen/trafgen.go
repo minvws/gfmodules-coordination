@@ -2,9 +2,11 @@ package main
 
 import (
 	"flag"
+	"math"
 	"math/rand"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 
@@ -20,19 +22,21 @@ func main() {
 	minDelay := flag.Int("min-delay", 10, "Minimum delay in seconds")
 	maxDelay := flag.Int("max-delay", 30, "Maximum delay in seconds")
 	endpoint := flag.String("endpoint", URL, "URL endpoint to send requests to")
+	minBsn := flag.Int("min-bsn", 950000000, "Minimum BSN number")
+	maxBsn := flag.Int("max-bsn", 950001000, "Maximum BSN number")
 
 	// Parse command-line arguments
 	flag.Parse()
 
 	if *threads <= 0 {
-		println("Usage: trafgen -threads <number of threads> -min-delay <min delay> -max-delay <max delay> -endpoint <url>")
+		println("Usage: trafgen -threads <number of threads> -min-delay <min delay> -max-delay <max delay> -endpoint <url> -min-bsn <min bsn> -max-bsn <max bsn>")
 		return
 	}
 
 	for i := 0; i < *threads; i++ {
 		var threadId = i
 		go func() {
-			trafgen(threadId, *endpoint, *minDelay, *maxDelay)
+			trafgen(threadId, *endpoint, *minDelay, *maxDelay, *minBsn, *maxBsn)
 		}()
 	}
 
@@ -41,7 +45,7 @@ func main() {
 	}
 }
 
-func trafgen(threadNr int, endpoint string, minDelay int, maxDelay int) {
+func trafgen(threadNr int, endpoint string, minDelay, maxDelay, minBsn, maxBsn int) {
 	if maxDelay-minDelay > 0 {
 		// Delay first request
 		delay := time.Duration(rand.Intn(maxDelay-minDelay)+minDelay) / 2
@@ -57,7 +61,9 @@ func trafgen(threadNr int, endpoint string, minDelay int, maxDelay int) {
 			continue
 		}
 
-		status := submitForm(endpoint, "950000012", "beeldbank", token, cookie)
+		// Generate random BSN number
+		bsn := generate_bsn(minBsn, maxBsn)
+		status := submitForm(endpoint, bsn, "beeldbank", token, cookie)
 
 		delay := 0 * time.Second
 		if maxDelay-minDelay > 0 {
@@ -70,8 +76,36 @@ func trafgen(threadNr int, endpoint string, minDelay int, maxDelay int) {
 	}
 }
 
+func intPow(base, exp int) int {
+	return int(math.Pow(float64(base), float64(exp)))
+}
+
+func valid_bsn(bsn int) bool {
+	if bsn < 100000000 || bsn > 999999999 {
+		return false
+	}
+
+	// Calculate BSN check digit
+	weights := []int{9, 8, 7, 6, 5, 4, 3, 2, -1}
+	sum := 0
+	for i, w := range weights {
+		sum += w * (bsn / intPow(10, 8-i))
+	}
+
+	return sum%11 == 0
+}
+
+func generate_bsn(min int, max int) string {
+	bsn := rand.Intn(max-min) + min
+	for !valid_bsn(bsn) {
+		bsn += 1
+	}
+
+	return strconv.Itoa(bsn)
+}
+
 func submitForm(endpoint, bsn, dataDomain, token string, cookie http.Cookie) string {
-	println("Submitting form with BSN:", bsn, "Data domain:", dataDomain, "Token:", token, "Cookie:", cookie.Raw)
+	println("Submitting form with BSN:", bsn, "Data domain:", dataDomain, "Token:", token[0:20], "Cookie:", cookie.Raw)
 
 	data := url.Values{}
 	data.Set("form[bsn]", bsn)
@@ -87,11 +121,6 @@ func submitForm(endpoint, bsn, dataDomain, token string, cookie http.Cookie) str
 	if err != nil {
 		return "Error"
 	}
-
-	// s, err := io.ReadAll(resp.Body)
-	// if err != nil {
-	// 	return "Error READ"
-	// }
 
 	return resp.Status
 }
