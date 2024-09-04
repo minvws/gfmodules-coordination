@@ -1,4 +1,4 @@
-module github.com/jaytaph/travgen
+module github.com/jaytaph/trafgen
 
 go 1.21.3
 
