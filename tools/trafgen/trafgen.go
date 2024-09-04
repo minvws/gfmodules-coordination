@@ -1,11 +1,8 @@
 package main
 
 import (
-<<<<<<< Updated upstream
-=======
 	"flag"
 	"math"
->>>>>>> Stashed changes
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -17,19 +14,10 @@ import (
 )
 
 const (
-	URL         = "https://pgodemo.test.zm.irealisatie.nl/"
-	ThreadCount = 15
-	MinDelay    = 5
-	MaxDelay    = 30
+	URL = "https://pgodemo.test.zm.irealisatie.nl/"
 )
 
 func main() {
-<<<<<<< Updated upstream
-	for i := 0; i < ThreadCount; i++ {
-		var threadId = i
-		go func() {
-			trafgen(threadId)
-=======
 	threads := flag.Int("threads", 0, "Number of go routines to use")
 	minDelay := flag.Int("min-delay", 10, "Minimum delay in seconds")
 	maxDelay := flag.Int("max-delay", 30, "Maximum delay in seconds")
@@ -49,21 +37,14 @@ func main() {
 		var threadId = i
 		go func() {
 			trafgen(threadId, *endpoint, *minDelay, *maxDelay, *minBsn, *maxBsn)
->>>>>>> Stashed changes
 		}()
 	}
 
 	for {
+		time.Sleep(1 * time.Second)
 	}
 }
 
-<<<<<<< Updated upstream
-func trafgen(threadNr int) {
-	// Delay first request
-	delay := time.Duration(rand.Intn(MaxDelay-MinDelay)+MinDelay) / 2
-	println("Thread", threadNr, "Delay:", delay)
-	time.Sleep(delay * time.Second)
-=======
 func trafgen(threadNr int, endpoint string, minDelay, maxDelay, minBsn, maxBsn int) {
 	if maxDelay-minDelay > 0 {
 		// Delay first request
@@ -71,16 +52,15 @@ func trafgen(threadNr int, endpoint string, minDelay, maxDelay, minBsn, maxBsn i
 		println("Thread", threadNr, "Delay:", delay)
 		time.Sleep(delay * time.Second)
 	}
->>>>>>> Stashed changes
 
 	for {
-		token, cookie := fetchCsrfTokenAndCookie()
-		time.Sleep(1 * time.Second)
+		token, cookie := fetchCsrfTokenAndCookie(endpoint)
+		time.Sleep(500 * time.Millisecond)
+		if token == "" {
+			println("Thread", threadNr, "Error fetching token")
+			continue
+		}
 
-<<<<<<< Updated upstream
-		status := submitForm("950000012", "beeldbank", token, cookie)
-		delay := time.Duration(rand.Intn(MaxDelay-MinDelay) + MinDelay)
-=======
 		// Generate random BSN number
 		bsn := generate_bsn(minBsn, maxBsn)
 		status := submitForm(endpoint, bsn, "beeldbank", token, cookie)
@@ -89,7 +69,6 @@ func trafgen(threadNr int, endpoint string, minDelay, maxDelay, minBsn, maxBsn i
 		if maxDelay-minDelay > 0 {
 			delay = time.Duration(rand.Intn(maxDelay-minDelay) + minDelay)
 		}
->>>>>>> Stashed changes
 
 		println("Thread", threadNr, "Status:", status, "Delay:", delay)
 
@@ -97,10 +76,6 @@ func trafgen(threadNr int, endpoint string, minDelay, maxDelay, minBsn, maxBsn i
 	}
 }
 
-<<<<<<< Updated upstream
-func submitForm(bsn, dataDomain, token string, cookie http.Cookie) string {
-	println("Submitting form with BSN:", bsn, "Data domain:", dataDomain, "Token:", token, "Cookie:", cookie.Raw)
-=======
 func intPow(base, exp int) int {
 	return int(math.Pow(float64(base), float64(exp)))
 }
@@ -131,14 +106,13 @@ func generate_bsn(min int, max int) string {
 
 func submitForm(endpoint, bsn, dataDomain, token string, cookie http.Cookie) string {
 	println("Submitting form with BSN:", bsn, "Data domain:", dataDomain, "Token:", token[0:20], "Cookie:", cookie.Raw)
->>>>>>> Stashed changes
 
 	data := url.Values{}
 	data.Set("form[bsn]", bsn)
 	data.Set("form[data_domain]", dataDomain)
 	data.Set("form[_token]", token)
 
-	r, _ := http.NewRequest(http.MethodPost, URL, strings.NewReader(data.Encode()))
+	r, _ := http.NewRequest(http.MethodPost, endpoint, strings.NewReader(data.Encode()))
 	r.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	r.AddCookie(&cookie)
 
@@ -151,20 +125,20 @@ func submitForm(endpoint, bsn, dataDomain, token string, cookie http.Cookie) str
 	return resp.Status
 }
 
-func fetchCsrfTokenAndCookie() (string, http.Cookie) {
+func fetchCsrfTokenAndCookie(endpoint string) (string, http.Cookie) {
 	var cookie = http.Cookie{}
 	var token = ""
 
-	r, _ := http.NewRequest(http.MethodGet, URL, nil)
+	r, _ := http.NewRequest(http.MethodGet, endpoint, nil)
 	client := &http.Client{}
 	resp, err := client.Do(r)
 	if err != nil {
-		panic(err)
+		return "", http.Cookie{}
 	}
 
 	doc, err := htmlquery.Parse(resp.Body)
 	if err != nil {
-		panic(err)
+		return "", http.Cookie{}
 	}
 
 	err = resp.Body.Close()

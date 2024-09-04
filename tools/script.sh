@@ -55,7 +55,7 @@ BASEDIR=`dirname $SCRIPT`/../../
 
 cd $BASEDIR
 
-MODULES="nl-irealisatie-zmodules-pgo-demo nl-irealisatie-zmodules-addressing-register nl-irealisatie-zmodules-localisation-register nl-irealisatie-zmodules-metadata-register nl-irealisatie-zmodules-pseudonym-service nl-irealisatie-zmodules-timeline-service"
+MODULES="nl-irealisatie-zmodules-pgo-demo nl-irealisatie-zmodules-addressing-register gfmodules-national-referral-index gfmodules-localization-register-service gfmodules-localization-metadata-register nl-irealisatie-zmodules-pseudonym-service"
 
 for module in $MODULES ; do
   if [ ! -d "$module" ] ; then
@@ -64,7 +64,7 @@ for module in $MODULES ; do
 done
 
 if "$REMOVE" || "$CLEAR_CONFIG" ; then
-    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    cd $BASEDIR/gfmodules-coordination
     if "$REMOVE" ; then
       docker compose stop
       docker compose rm -f
@@ -87,7 +87,7 @@ if "$REMOVE" || "$CLEAR_CONFIG" ; then
 fi
 
 if "$AUTOPILOT"; then
-    cd $BASEDIR/nl-irealisatie-zmodules-coordination
+    cd $BASEDIR/gfmodules-coordination
     if "$BUILD"; then
       docker compose build
     fi
