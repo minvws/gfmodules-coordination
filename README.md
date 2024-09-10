@@ -104,10 +104,14 @@ tools/./script.sh --remove --clear-config --autopilot --build
 To setup all the applications you may run the 'tools/script.sh' script top setup
 How to setup the applications to run locally is described at the repositories itself.
 
-| Service       | Exposed http url        | Repository link                                                         |
-|---------------|-------------------------|-------------------------------------------------------------------------|
-| NRI           | <http://localhost:8501> | <https://github.com/minvws/gfmodules-national-referral-index>           |
-| Addressing    | <http://localhost:8502> | <https://github.com/minvws/nl-irealisatie-zmodules-addressing-register> |
-| LMR           | <http://localhost:8503> | <https://github.com/minvws/gfmodules-localization-metadata-register>    |
-| Pseudonym     | <http://localhost:8504> | <https://github.com/minvws/nl-irealisatie-zmodules-pseudonym-service>   |
-| LRS           | <http://localhost:8505> | <https://github.com/minvws/gfmodules-localization-register-service>     |
+<!-- markdownlint-disable MD013 -->
+| Service       | Exposed http url        | Repository link                                                                                 |
+|---------------|-------------------------|-------------------------------------------------------------------------------------------------|
+| NRI                     | <http://localhost:8501> | <https://github.com/minvws/gfmodules-national-referral-index>                         |
+| Addressing              | <http://localhost:8502> | <https://github.com/minvws/nl-irealisatie-zmodules-addressing-register>               |
+| LMR                     | <http://localhost:8503> | <https://github.com/minvws/gfmodules-localization-metadata-register>                  |
+| Pseudonym               | <http://localhost:8504> | <https://github.com/minvws/nl-irealisatie-zmodules-pseudonym-service>                 |
+| LRS                     | <http://localhost:8505> | <https://github.com/mInvws/gfmodules-localization-register-service>                   |
+| Qualification Admin API | <http://localhost:8506> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-admin-api>  |
+| Qualification API       | <http://localhost:8507> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-api>        |
+| Qualification Web       | <http://localhost:8508> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-web>        |
