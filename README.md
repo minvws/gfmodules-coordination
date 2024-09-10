@@ -1,5 +1,11 @@
 # Generic Functions Modules (Generieke Functies Modules)
 
+## Requirements
+
+- `docker` - Most of the project runs inside of Docker containers
+- `php`, `composer` - The [`nl-irealisatie-zmodules-pgo-demo`](https://github.com/minvws/nl-irealisatie-zmodules-pgo-demo)
+  project is written in PHP, and requires a package manger. This is being used in the autopilot script.
+
 ## Disclaimer
 
 The GFModules project is currently under development. The information in this repository is
@@ -87,7 +93,7 @@ can be found at the repository.
 
 For more details about the Qualification Register see [Qualification Register Documentation](qualification-register/qualification-register.md)
 
-## Development
+## Getting started
 
 If this is the first time you want to set up all the above components you can run:
 
@@ -101,8 +107,9 @@ When you want to clear the current state and reinstall everything with the defau
 tools/./script.sh --remove --clear-config --autopilot --build
 ```
 
-To setup all the applications you may run the 'tools/script.sh' script top setup
-How to setup the applications to run locally is described at the repositories itself.
+To setup all the applications you may run the `tools/script.sh` script top setup.
+
+The guides on setting up the individual services to work locally are described in the repositories below.
 
 <!-- markdownlint-disable MD013 -->
 | Service       | Exposed http url        | Repository link                                                                                 |
