@@ -124,6 +124,7 @@ The guides on setting up the individual services to work locally are described i
 | Qualification Web       | <http://localhost:8508> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-web>        |
 
 ## Contributing
-When introducing changes in the documenation, the `node` and [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) tool are both needed. These are being [used in the continuous integration (CI) pipeline](.github/workflows/documentation-linter.yml) to lint all the Markdown files. 
+
+When introducing changes in the documenation, the `node` and [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) tool are both needed. These are being [used in the continuous integration (CI) pipeline](.github/workflows/documentation-linter.yml) to lint all the Markdown files.
 
 Therefor, use the `markdownlint-cli2` tool on the Markdown files to check and fix the style.
