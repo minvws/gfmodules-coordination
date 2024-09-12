@@ -4,7 +4,7 @@
 
 - `docker` - Most of the project runs inside of Docker containers
 - `php`, `composer` - The [`nl-irealisatie-zmodules-pgo-demo`](https://github.com/minvws/nl-irealisatie-zmodules-pgo-demo)
-  project is written in PHP, and requires a package manger. This is being used in the autopilot script.
+  project is written in PHP, and requires a package manager. This is being used in the autopilot script.
 
 ## Disclaimer
 
