@@ -126,6 +126,7 @@ The guides on setting up the individual services to work locally are described i
 ## Contributing
 
 ### Usage of `.gitignore` files
+
 It is important to leave user specific files such as IDE or text-editor settings outside the repository. For this, create an local `.gitignore` file and configure git like below.
 
 ```bash
