@@ -66,7 +66,7 @@ done
 if "$REMOVE" || "$CLEAR_CONFIG"; then
   cd $BASEDIR/gfmodules-coordination
   if "$REMOVE"; then
-    docker compose stop
+    docker compose stop -t 0
     docker compose rm -f
   fi
 
@@ -74,7 +74,7 @@ if "$REMOVE" || "$CLEAR_CONFIG"; then
     cd $BASEDIR/${module}
     echo "=== ${module} ==="
     if "$REMOVE"; then
-      docker compose stop
+      docker compose stop -t 0
       docker compose rm -f
     fi
     if "$CLEAR_CONFIG"; then
