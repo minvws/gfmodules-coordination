@@ -125,4 +125,14 @@ The guides on setting up the individual services to work locally are described i
 
 ## Contributing
 
+### Usage of `.gitignore` files
+
+It is important to leave user specific files such as IDE or text-editor settings outside the repository. For this, create an local `.gitignore` file and configure git like below.
+
+```bash
+git config --global core.excludesfile ~/.gitignore
+```
+
+## Documentation
+
 When introducing changes in the documenation, the `node` and [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) tool can both come in handy. These are being [used in the continuous integration (CI) pipeline](.github/workflows/documentation-linter.yml) to lint all the Markdown files. Therefor you can use the `markdownlint-cli2` tool on the Markdown files to check and fix the style.
