@@ -8,6 +8,7 @@ REMOVE=false
 CLEAR_CONFIG=false
 AUTOPILOT=false
 BUILD=false
+DEBUG=false
 
 # Function to display script usage
 function display_usage() {
@@ -44,6 +45,10 @@ while [[ $# -gt 0 ]]; do
     BUILD=true
     shift
     ;;
+  -d | --debug)
+    DEBUG=true
+    shift
+    ;;
   *)
     shift
     ;;
@@ -51,7 +56,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 SCRIPT=$(readlink -f $0)
-BASEDIR=$(dirname $SCRIPT)/../../
+BASEDIR=$(dirname $SCRIPT)/../..
 
 cd $BASEDIR
 
@@ -107,6 +112,12 @@ if "$AUTOPILOT"; then
 
     echo "==="
   done
+fi
+
+if "$DEBUG"; then
+  cd $BASEDIR
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec bash -c "cd {} && docker compose logs --tail=100" \; >$BASEDIR/debug.log
+  echo "Stored the debug file at $BASEDIR/debug.log"
 fi
 
 if "$AUTOPILOT"; then
