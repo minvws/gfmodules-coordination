@@ -72,6 +72,8 @@ The Addressing Register holds the information about the various Health Data endp
 for fetching the metadata. The information of the Addressing Register should be enough for the Timeline
 Service or the Health application to fetch the actual metadata.
 
+All the data models available in the Addressing Register are based on [HL7 FHIR R4](https://hl7.org/fhir/R4/)
+
 Details about documentation and implementation can be found at the
 [Addressing Register repository](https://github.com/minvws/nl-irealisatie-zmodules-addressing-register)
 
