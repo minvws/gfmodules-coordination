@@ -87,3 +87,4 @@ create_uzi_key_pair () {
 
 create_uzi_key_pair timeline 90000001
 create_uzi_key_pair localization 90000002
+create_uzi_key_pair prs 90000003
