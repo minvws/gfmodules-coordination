@@ -33,7 +33,7 @@ create_key_pair () {
 
     echo "generating keypair and certificate $base_name in $base_name with CN:$base_name"
     mkdir -p `dirname "$full_base.crt"`
-    openssl genrsa -out $full_base.key 2048
+    openssl genrsa -out $full_base.key 3072
     openssl rsa -in $full_base.key -pubout > $full_base.pub
     openssl req -new -sha256 \
       -key $full_base.key \
@@ -65,7 +65,7 @@ create_uzi_key_pair () {
 
     echo "generating keypair and certificate $base_name in $SECRETS_DIR/$base_name with CN:$base_name"
     mkdir -p `dirname "$full_base.crt"`
-    openssl genrsa -out $full_base.key 2048
+    openssl genrsa -out $full_base.key 3072
     openssl rsa -in $full_base.key -pubout > $full_base.pub
     openssl req -new -sha256 \
       -key $full_base.key \
