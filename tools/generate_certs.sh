@@ -72,6 +72,7 @@ create_uzi_key_pair () {
       -subj "/C=NL/L=Den Haag/O=MinVWS/OU=RDO/CN=$base_name/serialNumber=1234ABCD" \
       -addext "subjectAltName = otherName:2.5.5.5;IA5STRING:2.16.528.1.1003.1.3.5.5.2-1-12345678-S-$ura_number-00.000-00000000,DNS:$base_name" \
       -addext "certificatePolicies = 2.16.528.1.1003.1.2.8.6" \
+      -addext "extendedKeyUsage = serverAuth,clientAuth" \
       -out $full_base.csr
     openssl x509 -req -days 500 -sha256 \
       -in $full_base.csr \
