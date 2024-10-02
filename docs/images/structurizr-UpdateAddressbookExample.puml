@@ -1,0 +1,62 @@
+@startuml
+set separator none
+title Update Addressbook (Example flow)
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<AdminPortal>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<Administrator>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<AdressingService>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LocalAddressingRegister>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Generic Function Modules" <<group1>> as group1 {
+  skinparam RectangleBorderColor<<group1>> #cccccc
+  skinparam RectangleFontColor<<group1>> #cccccc
+  skinparam RectangleBorderStyle<<group1>> dashed
+
+  rectangle "==Adressing Service\n<size:10>[System]</size>" <<AdressingService>> as AdressingService
+}
+
+rectangle "Healthcare Provider domain" <<group2>> as group2 {
+  skinparam RectangleBorderColor<<group2>> #cccccc
+  skinparam RectangleFontColor<<group2>> #cccccc
+  skinparam RectangleBorderStyle<<group2>> dashed
+
+  rectangle "==Administrator\n<size:10>[Person]</size>" <<Administrator>> as Administrator
+  rectangle "==Local Addressing Register\n<size:10>[System]</size>" <<LocalAddressingRegister>> as LocalAddressingRegister
+  rectangle "==Admin Portal\n<size:10>[System]</size>" <<AdminPortal>> as AdminPortal
+}
+
+Administrator .[#707070,thickness=2].> AdminPortal : "<color:#707070>1. Change endpoint address"
+AdminPortal .[#707070,thickness=2].> LocalAddressingRegister : "<color:#707070>2. Change endpoint address"
+LocalAddressingRegister <.[#707070,thickness=2]. AdressingService : "<color:#707070>3. Request Care Services Updates [ITI-91]"
+@enduml

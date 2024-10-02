@@ -1,0 +1,86 @@
+@startuml
+set separator none
+title Lokalisatie Register Service - System Context
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<AdressingService>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<EPDPACS>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LokalisatieMetadataRegister>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LokalisatieRegisterService>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<NationalReferralIndex>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<PseudonymReferenceService>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Generic Function Modules" <<group1>> as group1 {
+  skinparam RectangleBorderColor<<group1>> #cccccc
+  skinparam RectangleFontColor<<group1>> #cccccc
+  skinparam RectangleBorderStyle<<group1>> dashed
+
+  rectangle "==Pseudonym Reference Service\n<size:10>[System]</size>" <<PseudonymReferenceService>> as PseudonymReferenceService
+  rectangle "==Adressing Service\n<size:10>[System]</size>" <<AdressingService>> as AdressingService
+  rectangle "==National Referral Index\n<size:10>[System]</size>" <<NationalReferralIndex>> as NationalReferralIndex
+}
+
+rectangle "Healthcare Provider domain" <<group2>> as group2 {
+  skinparam RectangleBorderColor<<group2>> #cccccc
+  skinparam RectangleFontColor<<group2>> #cccccc
+  skinparam RectangleBorderStyle<<group2>> dashed
+
+  rectangle "==Lokalisatie Metadata Register\n<size:10>[System]</size>" <<LokalisatieMetadataRegister>> as LokalisatieMetadataRegister
+  rectangle "==Lokalisatie Register Service\n<size:10>[System]</size>" <<LokalisatieRegisterService>> as LokalisatieRegisterService
+  rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
+}
+
+
+LokalisatieMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Update localization data"
+NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request base Pseudonym"
+LokalisatieMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>"
+LokalisatieRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
+LokalisatieRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data"
+LokalisatieRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
+LokalisatieRegisterService .[#707070,thickness=2].> LokalisatieMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
+EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data"
+EPDPACS .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
+EPDPACS .[#707070,thickness=2].> LokalisatieMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
+EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
+EPDPACS .[#707070,thickness=2].> LokalisatieRegisterService : "<color:#707070>Request timeline"
+@enduml

@@ -1,0 +1,81 @@
+@startuml
+set separator none
+title Architecture
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<AdressingService>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LocalAddressingRegister>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LocalizationMetadataRegisterSource>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LokalisatieMetadataRegister>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LokalisatieRegisterService>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<NationalReferralIndex>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<PseudonymReferenceService>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Generic Function Modules" <<group1>> as group1 {
+  skinparam RectangleBorderColor<<group1>> #cccccc
+  skinparam RectangleFontColor<<group1>> #cccccc
+  skinparam RectangleBorderStyle<<group1>> dashed
+
+  rectangle "==Pseudonym Reference Service\n<size:10>[System]</size>" <<PseudonymReferenceService>> as PseudonymReferenceService
+  rectangle "==Adressing Service\n<size:10>[System]</size>" <<AdressingService>> as AdressingService
+  rectangle "==National Referral Index\n<size:10>[System]</size>" <<NationalReferralIndex>> as NationalReferralIndex
+}
+
+rectangle "Healthcare Provider domain" <<group2>> as group2 {
+  skinparam RectangleBorderColor<<group2>> #cccccc
+  skinparam RectangleFontColor<<group2>> #cccccc
+  skinparam RectangleBorderStyle<<group2>> dashed
+
+  rectangle "==Local Addressing Register\n<size:10>[System]</size>" <<LocalAddressingRegister>> as LocalAddressingRegister
+  rectangle "==Lokalisatie Metadata Register\n<size:10>[System]</size>" <<LokalisatieMetadataRegister>> as LokalisatieMetadataRegister
+  rectangle "==Localization Metadata Register (Source)\n<size:10>[System]</size>" <<LocalizationMetadataRegisterSource>> as LocalizationMetadataRegisterSource
+  rectangle "==Lokalisatie Register Service\n<size:10>[System]</size>" <<LokalisatieRegisterService>> as LokalisatieRegisterService
+}
+
+
+@enduml
