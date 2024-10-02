@@ -20,6 +20,8 @@ create_ca() {
     -key $SECRETS_DIR/${cert_name}.key \
     -out $SECRETS_DIR/${cert_name}.crt \
     -subj "/C=NL/L=Den Haag/O=MinVWS/OU=RDO/CN=gfmodules-dev-${cert_name}-ca"
+
+  openssl pkcs12 -export -out $SECRETS_DIR/${cert_name}.pfx -inkey $SECRETS_DIR/${cert_name}.key -in $SECRETS_DIR/${cert_name}.crt -passout pass:notsecret
 }
 
 
@@ -50,6 +52,8 @@ create_intermediate() {
     -extfile <(echo "basicConstraints=critical,CA:TRUE,pathlen:0")
 
     rm $SECRETS_DIR/${im_name}.csr
+
+    openssl pkcs12 -export -out $SECRETS_DIR/${im_name}.pfx -inkey $SECRETS_DIR/${im_name}.key -in $SECRETS_DIR/${im_name}.crt -passout pass:notsecret
 }
 
 
@@ -70,19 +74,25 @@ create_client_cert () {
 
   echo "generating keypair and certificate ${cert_name} in ${cert_name} with CN:${cert_name}"
   mkdir -p `dirname "${full_base}.crt"`
+
   openssl genrsa -out ${full_base}.key 3072
   openssl rsa -in ${full_base}.key -pubout > ${full_base}.pub
+
   openssl req -new -sha256 \
     -key ${full_base}.key \
     -subj "/C=NL/L=Den Haag/O=MinVWS/OU=RDO/CN=${cert_name}" \
     -out ${full_base}.csr
+
   openssl x509 -req -days 500 -sha256 \
     -in ${full_base}.csr \
     -CA ${full_ca_base}.crt \
     -CAkey ${full_ca_base}.key \
     -CAcreateserial \
     -out ${full_base}.crt
+
   rm ${full_base}.csr
+
+  openssl pkcs12 -export -out ${full_base}.pfx -inkey ${full_base}.key -in ${full_base}.crt -passout pass:notsecret
 }
 
 
@@ -106,6 +116,7 @@ create_uzi_cert () {
 
   openssl genrsa -out ${full_base}.key 3072
   openssl rsa -in ${full_base}.key -pubout > ${full_base}.pub
+
   openssl req -new -sha256 \
     -key ${full_base}.key \
     -subj "/C=NL/L=Den Haag/O=MinVWS/OU=RDO/CN=${cert_name}/serialNumber=1234ABCD" \
@@ -113,6 +124,7 @@ create_uzi_cert () {
     -addext "certificatePolicies = 2.16.528.1.1003.1.2.8.6" \
     -addext "extendedKeyUsage = serverAuth,clientAuth" \
     -out ${full_base}.csr
+
   openssl x509 -req -days 500 -sha256 \
     -in ${full_base}.csr \
     -CA ${full_ca_base}.crt \
@@ -120,9 +132,13 @@ create_uzi_cert () {
     -CAcreateserial \
     -copy_extensions copyall \
     -out ${full_base}.crt
+
   rm ${full_base}.csr
   chmod +r ${full_base}.key
+
+  openssl pkcs12 -export -out ${full_base}.pfx -inkey ${full_base}.key -in ${full_base}.crt -certfile ${full_ca_base}.crt -passout pass:notsecret
 }
+
 
 create_ca "uzi-server-ca"
 create_intermediate "im1-uzi-server" "uzi-server-ca"
@@ -132,7 +148,8 @@ create_uzi_cert timeline 90000001 "uzi-server-ca"
 create_uzi_cert localization 90000002 "uzi-server-ca"
 create_uzi_cert addressing 90000004 "uzi-server-ca"
 
-create_uzi_cert prs.example.org 90000012 "uzi-server-ca"
-create_uzi_cert prs-client-1.example.org 90000024 "im1-uzi-server"
-create_uzi_cert prs-client-2.example.org 90000036 "im2-uzi-server"
-create_uzi_cert prs-client-3.example.org 90000048 "uzi-server-ca"
+create_uzi_cert prs.local 90000012 "uzi-server-ca"
+create_uzi_cert prs.local 90000012 "uzi-server-ca"
+create_uzi_cert prs-client-1.local 90000024 "im1-uzi-server"
+create_uzi_cert prs-client-2.local 90000036 "im2-uzi-server"
+create_uzi_cert prs-client-3.local 90000048 "uzi-server-ca"
