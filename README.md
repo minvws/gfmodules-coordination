@@ -32,7 +32,7 @@ This project supports multiple processes. To give a clear overview they are divi
 
 ### Read
 
-- [Fetch localized health data from EPD](./docs/processes/localize_health_data.md)
+- [Fetch localization information about health data](./docs/processes/localize_health_data.md)
 - [Find endpoints of healthcare services [mCSD ITI-90]](./docs/processes/find_endpoints.md)
 - [Fetch metadata from Metadata Register [FHIR resources]](./docs/processes/metadata_fhir.md)
 - [Fetch timeline](./docs/processes/timeline.md)
