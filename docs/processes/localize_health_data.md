@@ -5,8 +5,8 @@
 Localization is a process where a healthcare professional can locate the patient data that resides across healthcare
 providers.
 
-This process enables healthcare professionals to use their EPD(Elektronisch Patiëntendossier) to localize the health data of a certain patient based
-on their BSN.
+This process enables healthcare professionals to use their EPD(Elektronisch Patiëntendossier) to localize health data
+of a certain patient based on their BSN.
 
 ## Process overview
 
