@@ -2,7 +2,7 @@
 
 ## Summary
 
-This process enables healthcare professionals to use their EPD to localize the health data of a certain patient based
+This process enables healthcare professionals to use their EPD to localize health data of a certain patient based.
 on their BSN.
 
 ## Process overview
