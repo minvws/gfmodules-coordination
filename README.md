@@ -15,30 +15,38 @@ various applications.
 The GFModules project is a collection of applications that have the purpose to improve the
 data exchange between healthcare providers. This project is the technical implementation of
 the various components of the 'Generieke Functies, lokalisatie en addressering' project of the
-Ministry of Health, Welfare and Sport of the Dutch goverment.
-
-See the table below for an overview of the currently identified components.
-
-<!-- markdownlint-disable md013 -->
-| Project name                                              | Technical component name                                              |
-|-----------------------------------------------------------|-----------------------------------------------------------------------|
-| GF Localisatie, module Lokalisatie Metadataregister (LMR) | [Localization Metadata Register](#localization-metadata-register-lmr) |
-| Module Kwalificatieregister                               |                                                                       |
-| GF Lokalisatie, module Lokalisatie register service (LRS) | [Localization Register Service](#localization-register-service-lrs)   |
-| GF Lokalisatie, module nationale Verwijsindex (NVI)       | [National Referral Index](#national-referral-index-nri)               |
-| GF Lokalisatie, module polymorfe pseudonimisering         | [Pseudonym Service](#pseudonym-service)                               |
-| Module Logging                                            |                                                                       |
-| GF Addressering                                           | [Addressing Register](#addressing-register)                           |
-<!-- markdownlint-enable md013 -->
+Ministry of Health, Welfare and Sport of the Dutch government.
 
 ## Architecture
 
-In this project a Timeline Service is exposed for convenience. It should also be possible
-for healthcare applications to connect directly to the underlying services.
-When step 5 is finished, a healthcare application can request the actual data using the
-metadata that is fetched in step 5.
+This project supplies a number of generic components that should be used in the Generic Functions Localization and
+Addressing. Aside from the generic components, this project also supplies a reference implementation for various
+components to make integration easier.
 
-![alt text](assets/system-components.png "system")
+![Architecture](./docs/images/structurizr-Components.svg)
+![Legend](./docs/images/structurizr-Components-key.svg)
+
+## Processes
+
+This project supports multiple processes. To give a clear overview they are divided into read, write and administration processes.
+
+### Read
+
+- [Fetch localization information about health data](./docs/processes/localize_health_data.md)
+- [Find endpoints of healthcare services [mCSD ITI-90]](./docs/processes/find_endpoints.md)
+- [Fetch metadata from Metadata Register [FHIR resources]](./docs/processes/metadata_fhir.md)
+- [Fetch timeline](./docs/processes/timeline.md)
+- Find qualified healthcare services
+
+### Write
+
+- [Update localization from metadata register at referral index](./docs/processes/update_localization_data.md)
+
+### Administration
+
+- [Update addressbook reference at addressing register](./docs/processes/update_addressbook_reference.md)
+- [Update addresses from addressbook [mCSD ITI-91]](./docs/processes/update_addresses_addressbook.md)
+- Update qualified healthcare services
 
 ## Components
 
@@ -141,4 +149,13 @@ tools/./script.sh --debug
 
 ## Documentation
 
-When introducing changes in the documenation, the `node` and [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) tool can both come in handy. These are being [used in the continuous integration (CI) pipeline](.github/workflows/documentation-linter.yml) to lint all the Markdown files. Therefor you can use the `markdownlint-cli2` tool on the Markdown files to check and fix the style.
+When introducing changes in the documentation, the `node` and [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) tool can both come in handy. These are being [used in the continuous integration (CI) pipeline](.github/workflows/documentation-linter.yml) to lint all the Markdown files. Therefor you can use the `markdownlint-cli2` tool on the Markdown files to check and fix the style.
+
+### Structurizr
+
+The images in [docs/images](./docs/images/) are created from the structurizr [workspace.dsl](./docs/workspace.dsl) file.
+To update the images after changing the structurizr workspace file run the following command:
+
+```bash
+tools/./update-diagrams.sh
+```

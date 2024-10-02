@@ -18,6 +18,7 @@ function display_usage() {
   echo "  -r, --remove                    Docker compose stop and remove"
   echo "  -c, --clear-config              Remove the local config files"
   echo "  -a, --autopilot                 Copy the env files from the example files in each repository"
+  echo "  -d  --debug                     Write debug log file"
   echo "  -b  --build                     Rebuild the docker containers"
   echo "  --                              Everything behind the -- is executed in every module"
   exit 1

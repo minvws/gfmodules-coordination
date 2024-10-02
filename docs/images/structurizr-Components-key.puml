@@ -1,0 +1,41 @@
+@startuml
+set separator none
+
+skinparam {
+  shadowing false
+  arrowFontSize 15
+  defaultTextAlignment center
+  wrapWidth 100
+  maxMessageSize 100
+}
+hide stereotype
+
+skinparam rectangle<<_transparent>> {
+  BorderColor transparent
+  BackgroundColor transparent
+  FontColor transparent
+}
+
+skinparam rectangle<<1>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+}
+rectangle "==Generic Function Modules" <<1>>
+
+skinparam rectangle<<2>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+}
+rectangle "==Healthcare Application" <<2>>
+
+skinparam rectangle<<3>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+}
+rectangle "==Reference Implementation" <<3>>
+
+
+@enduml
