@@ -25,7 +25,7 @@ skinparam rectangle<<HealthcareProfessional>> {
   BorderColor #000000
   shadowing true
 }
-skinparam rectangle<<LokalisatieMetadataRegister>> {
+skinparam rectangle<<LokalizationMetadataRegister>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
@@ -51,13 +51,13 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
   skinparam RectangleFontColor<<group2>> #cccccc
   skinparam RectangleBorderStyle<<group2>> dashed
 
-  rectangle "==Lokalisatie Metadata Register\n<size:10>[System]</size>" <<LokalisatieMetadataRegister>> as LokalisatieMetadataRegister
+  rectangle "==Lokalization Metadata Register\n<size:10>[System]</size>" <<LokalizationMetadataRegister>> as LokalizationMetadataRegister
   rectangle "==Healthcare Professional\n<size:10>[Person]</size>" <<HealthcareProfessional>> as HealthcareProfessional
   rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
 }
 
 HealthcareProfessional .[#707070,thickness=2].> EPDPACS : "<color:#707070>1. Request metadata"
 EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>2. Request RID"
-EPDPACS .[#707070,thickness=2].> LokalisatieMetadataRegister : "<color:#707070>3. Fetch metadata [FHIR]"
-LokalisatieMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>4. Lookup base pseudonym"
+EPDPACS .[#707070,thickness=2].> LokalizationMetadataRegister : "<color:#707070>3. Fetch metadata [FHIR]"
+LokalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>4. Lookup base pseudonym"
 @enduml

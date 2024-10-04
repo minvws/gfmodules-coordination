@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title Lokalisatie Register Service - System Context
+title Lokalization Register Service - System Context
 
 top to bottom direction
 
@@ -25,13 +25,13 @@ skinparam rectangle<<EPDPACS>> {
   BorderColor #000000
   shadowing true
 }
-skinparam rectangle<<LokalisatieMetadataRegister>> {
+skinparam rectangle<<LokalizationMetadataRegister>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
   shadowing true
 }
-skinparam rectangle<<LokalisatieRegisterService>> {
+skinparam rectangle<<LokalizationRegisterService>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
@@ -65,22 +65,22 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
   skinparam RectangleFontColor<<group2>> #cccccc
   skinparam RectangleBorderStyle<<group2>> dashed
 
-  rectangle "==Lokalisatie Metadata Register\n<size:10>[System]</size>" <<LokalisatieMetadataRegister>> as LokalisatieMetadataRegister
-  rectangle "==Lokalisatie Register Service\n<size:10>[System]</size>" <<LokalisatieRegisterService>> as LokalisatieRegisterService
+  rectangle "==Lokalization Metadata Register\n<size:10>[System]</size>" <<LokalizationMetadataRegister>> as LokalizationMetadataRegister
+  rectangle "==Lokalization Register Service\n<size:10>[System]</size>" <<LokalizationRegisterService>> as LokalizationRegisterService
   rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
 }
 
 
-LokalisatieMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Update localization data"
+LokalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Update localization data"
 NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request base Pseudonym"
-LokalisatieMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>"
-LokalisatieRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
-LokalisatieRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data"
-LokalisatieRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
-LokalisatieRegisterService .[#707070,thickness=2].> LokalisatieMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
+LokalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>"
+LokalizationRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
+LokalizationRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data"
+LokalizationRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
+LokalizationRegisterService .[#707070,thickness=2].> LokalizationMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
 EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data"
 EPDPACS .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
-EPDPACS .[#707070,thickness=2].> LokalisatieMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
+EPDPACS .[#707070,thickness=2].> LokalizationMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
 EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
-EPDPACS .[#707070,thickness=2].> LokalisatieRegisterService : "<color:#707070>Request timeline"
+EPDPACS .[#707070,thickness=2].> LokalizationRegisterService : "<color:#707070>Request timeline"
 @enduml
