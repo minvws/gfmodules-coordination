@@ -31,13 +31,13 @@ skinparam rectangle<<LocalizationMetadataRegisterSource>> {
   BorderColor #000000
   shadowing true
 }
-skinparam rectangle<<LokalisatieMetadataRegister>> {
+skinparam rectangle<<LokalizationMetadataRegister>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
   shadowing true
 }
-skinparam rectangle<<LokalisatieRegisterService>> {
+skinparam rectangle<<LokalizationRegisterService>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
@@ -72,9 +72,9 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
   skinparam RectangleBorderStyle<<group2>> dashed
 
   rectangle "==Local Addressing Register\n<size:10>[System]</size>" <<LocalAddressingRegister>> as LocalAddressingRegister
-  rectangle "==Lokalisatie Metadata Register\n<size:10>[System]</size>" <<LokalisatieMetadataRegister>> as LokalisatieMetadataRegister
+  rectangle "==Lokalization Metadata Register\n<size:10>[System]</size>" <<LokalizationMetadataRegister>> as LokalizationMetadataRegister
   rectangle "==Localization Metadata Register (Source)\n<size:10>[System]</size>" <<LocalizationMetadataRegisterSource>> as LocalizationMetadataRegisterSource
-  rectangle "==Lokalisatie Register Service\n<size:10>[System]</size>" <<LokalisatieRegisterService>> as LokalisatieRegisterService
+  rectangle "==Lokalization Register Service\n<size:10>[System]</size>" <<LokalizationRegisterService>> as LokalizationRegisterService
 }
 
 

@@ -35,7 +35,7 @@ workspace {
                 tags "Healthcare Application"
             }
 
-            lmr = softwareSystem "Lokalisatie Metadata Register" {
+            lmr = softwareSystem "Lokalization Metadata Register" {
                 tags "Reference Implementation"
 
                 api = container "API"
@@ -45,7 +45,7 @@ workspace {
             sourceLmr = softwareSystem "Localization Metadata Register (Source)" {
                 tags "Reference Implementation"
             }
-            lrs = softwareSystem "Lokalisatie Register Service" {
+            lrs = softwareSystem "Lokalization Register Service" {
                 tags "Reference Implementation"
                 api = container "LRS API"
             }
@@ -161,6 +161,16 @@ workspace {
             lrs -> ads
             lrs -> lmr
             lmr -> prs "Lookup base pseudonym"
+        }
+
+        dynamic * "LocalizeInterface" {
+            title "Localize health data interface"
+            epd -> nri "Localize health data with RID"
+        }
+        
+        dynamic * "UpdateLocalizationDataInterface" {
+            title "Update localization data interface"
+            lmr -> nri "Update localization data"
         }
 
         systemLandscape "Components" {

@@ -1,0 +1,46 @@
+@startuml
+set separator none
+title Update localization data interface
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<LokalizationMetadataRegister>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<NationalReferralIndex>> {
+  BackgroundColor #ecc22e
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Generic Function Modules" <<group1>> as group1 {
+  skinparam RectangleBorderColor<<group1>> #cccccc
+  skinparam RectangleFontColor<<group1>> #cccccc
+  skinparam RectangleBorderStyle<<group1>> dashed
+
+  rectangle "==National Referral Index\n<size:10>[System]</size>" <<NationalReferralIndex>> as NationalReferralIndex
+}
+
+rectangle "Healthcare Provider domain" <<group2>> as group2 {
+  skinparam RectangleBorderColor<<group2>> #cccccc
+  skinparam RectangleFontColor<<group2>> #cccccc
+  skinparam RectangleBorderStyle<<group2>> dashed
+
+  rectangle "==Lokalization Metadata Register\n<size:10>[System]</size>" <<LokalizationMetadataRegister>> as LokalizationMetadataRegister
+}
+
+LokalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>1. Update localization data"
+@enduml
