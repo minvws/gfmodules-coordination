@@ -59,11 +59,11 @@ workspace {
         lmr -> prs
 
         lrs.api -> prs "Request RID"
-        lrs.api -> nri "Localize health data"
+        lrs.api -> nri "Localize health data with RID"
         lrs.api -> ads "Find endpoints [ITI-90]"
         lrs.api -> lmr "Fetch metadata [FHIR]"
 
-        epd -> nri.localize "Localize health data"
+        epd -> nri.localize "Localize health data with RID"
         epd -> nri.update "Update localization data"
         epd -> ads "Find endpoints [ITI-90]"
         epd -> lmr "Fetch metadata [FHIR]"
