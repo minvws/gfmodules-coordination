@@ -9,6 +9,7 @@ CLEAR_CONFIG=false
 AUTOPILOT=false
 BUILD=false
 DEBUG=false
+PRIVATE=false
 
 # Function to display script usage
 function display_usage() {
@@ -20,6 +21,7 @@ function display_usage() {
   echo "  -a, --autopilot                 Copy the env files from the example files in each repository"
   echo "  -d  --debug                     Write debug log file"
   echo "  -b  --build                     Rebuild the docker containers"
+  echo "  -p  --private                   Use the private stack instead of the public stack"
   echo "  --                              Everything behind the -- is executed in every module"
   exit 1
 }
@@ -50,6 +52,10 @@ while [[ $# -gt 0 ]]; do
     DEBUG=true
     shift
     ;;
+  -p | --private)
+    PRIVATE=true
+    shift
+    ;;
   *)
     shift
     ;;
@@ -61,7 +67,16 @@ BASEDIR=$(dirname $SCRIPT)/../..
 
 cd $BASEDIR
 
-MODULES="nl-irealisatie-zmodules-pgo-demo nl-irealisatie-zmodules-addressing-register gfmodules-national-referral-index gfmodules-localization-register-service gfmodules-localization-metadata-register nl-irealisatie-zmodules-pseudonym-service nl-irealisatie-zmodules-qualification-register-api nl-irealisatie-zmodules-qualification-register-admin-api nl-irealisatie-zmodules-qualification-register-web"
+MODULES_PUBLIC="gfmodules-web-demo gfmodules-addressing-register gfmodules-national-referral-index gfmodules-localization-register-service gfmodules-localization-metadata-register gfmodules-pseudonym-stub gfmodules-qualification-register-api gfmodules-qualification-register-admin-api gfmodules-qualification-register-web"
+MODULES_PRIVATE="gfmodules-web-demo-private gfmodules-addressing-register-private gfmodules-national-referral-index-private gfmodules-localization-register-service-private gfmodules-localization-metadata-register-private gfmodules-pseudonym-stub-private gfmodules-qualification-register-api-private gfmodules-qualification-register-admin-api-private gfmodules-qualification-register-web-private"
+
+if "$PRIVATE"; then
+  MODULES=$MODULES_PRIVATE
+  COORDINATION_DIR=$BASEDIR/gfmodules-coordination-private
+else
+  MODULES=$MODULES_PUBLIC
+  COORDINATION_DIR=$BASEDIR/gfmodules-coordination
+fi
 
 for module in $MODULES; do
   if [ ! -d "$module" ]; then
@@ -70,7 +85,7 @@ for module in $MODULES; do
 done
 
 if "$REMOVE" || "$CLEAR_CONFIG"; then
-  cd $BASEDIR/gfmodules-coordination
+  cd $COORDINATION_DIR
   if "$REMOVE"; then
     docker compose stop -t 0
     docker compose rm -f
@@ -93,7 +108,7 @@ if "$REMOVE" || "$CLEAR_CONFIG"; then
 fi
 
 if "$AUTOPILOT"; then
-  cd $BASEDIR/gfmodules-coordination
+  cd $COORDINATION_DIR
   if "$BUILD"; then
     docker compose build
   fi
