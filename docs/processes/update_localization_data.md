@@ -14,7 +14,7 @@ This process enables Healthcare Professionals to add or update a referral to a c
 
 3\. TODO, update interface definition reference
 
-4\. TODO: update interface definition reference Update localization data
+[4\. Update interface definition reference Update localization data](https://github.com/minvws/gfmodules-national-referral-index/blob/main/docs/interface-definitions/update-localization-data.md)
 
 5\. TODO, update interface definition reference
 
