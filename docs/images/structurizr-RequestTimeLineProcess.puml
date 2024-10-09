@@ -1,0 +1,39 @@
+@startuml
+set separator none
+title Request timeline
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<EPDPACS>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LocalizationRegisterService>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Healthcare Provider domain" <<group2>> as group2 {
+  skinparam RectangleBorderColor<<group2>> #cccccc
+  skinparam RectangleFontColor<<group2>> #cccccc
+  skinparam RectangleBorderStyle<<group2>> dashed
+
+  rectangle "==Localization Register Service\n<size:10>[System]</size>" <<LocalizationRegisterService>> as LocalizationRegisterService
+  rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
+}
+
+EPDPACS .[#707070,thickness=2].> LocalizationRegisterService : "<color:#707070>2. Request timeline"
+@enduml
