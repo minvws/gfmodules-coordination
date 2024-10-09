@@ -13,7 +13,7 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<LokalizationMetadataRegister>> {
+skinparam rectangle<<LocalizationMetadataRegister>> {
   BackgroundColor #7785d1
   FontColor #000000
   BorderColor #000000
@@ -39,8 +39,8 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
   skinparam RectangleFontColor<<group2>> #cccccc
   skinparam RectangleBorderStyle<<group2>> dashed
 
-  rectangle "==Lokalization Metadata Register\n<size:10>[System]</size>" <<LokalizationMetadataRegister>> as LokalizationMetadataRegister
+  rectangle "==Localization Metadata Register\n<size:10>[System]</size>" <<LocalizationMetadataRegister>> as LocalizationMetadataRegister
 }
 
-LokalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>1. Update localization data"
+LocalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>1. Update localization data"
 @enduml
