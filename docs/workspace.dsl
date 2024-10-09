@@ -35,7 +35,7 @@ workspace {
                 tags "Healthcare Application"
             }
 
-            lmr = softwareSystem "Lokalization Metadata Register" {
+            lmr = softwareSystem "Localization Metadata Register" {
                 tags "Reference Implementation"
 
                 api = container "API"
@@ -45,7 +45,7 @@ workspace {
             sourceLmr = softwareSystem "Localization Metadata Register (Source)" {
                 tags "Reference Implementation"
             }
-            lrs = softwareSystem "Lokalization Register Service" {
+            lrs = softwareSystem "Localization Register Service" {
                 tags "Reference Implementation"
                 api = container "LRS API"
             }
@@ -171,6 +171,11 @@ workspace {
         dynamic * "UpdateLocalizationDataInterface" {
             title "Update localization data interface"
             lmr -> nri "Update localization data"
+        }
+
+        dynamic * "FetchMetadataInterface" {
+            title "Fetch metadata interface"
+            epd -> lmr "Fetch metadata [FHIR]"
         }
 
         systemLandscape "Components" {

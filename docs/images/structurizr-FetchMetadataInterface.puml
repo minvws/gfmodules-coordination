@@ -1,0 +1,39 @@
+@startuml
+set separator none
+title Fetch metadata interface
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<EPDPACS>> {
+  BackgroundColor #c5c5c5
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+skinparam rectangle<<LocalizationMetadataRegister>> {
+  BackgroundColor #7785d1
+  FontColor #000000
+  BorderColor #000000
+  shadowing true
+}
+
+rectangle "Healthcare Provider domain" <<group1>> as group1 {
+  skinparam RectangleBorderColor<<group1>> #cccccc
+  skinparam RectangleFontColor<<group1>> #cccccc
+  skinparam RectangleBorderStyle<<group1>> dashed
+
+  rectangle "==Localization Metadata Register\n<size:10>[System]</size>" <<LocalizationMetadataRegister>> as LocalizationMetadataRegister
+  rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
+}
+
+EPDPACS .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>1. Fetch metadata [FHIR]"
+@enduml

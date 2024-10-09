@@ -6,3 +6,6 @@ MD013:
   heading_line_length: 120
   # Number of characters for code blocks
   code_block_line_length: 120
+
+MD033:
+  allowed_elements: [ "div" ]
