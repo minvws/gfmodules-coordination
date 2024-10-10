@@ -21,6 +21,6 @@ Overview diagram of the process
 
 6\. TODO: Find endpoints
 
-7\. TODO: Fetch metadata [FHIR]
+[7\. Fetch metadata [FHIR]](../interface-definitions/fetch-metadata.md)
 
 8\. TODO: Lookup base pseudonym
