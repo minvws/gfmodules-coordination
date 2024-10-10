@@ -2,7 +2,9 @@
 
 ## Summary
 
-TODO
+Request timeline is the process of fetching patient's data, and aggregating them into a cohesive set. The data is a
+representation of the patient's medical history. The proposed process involves internal and external communications of
+the GFModules stack. All done while maintaining anonymity of the patient throughout the flow.
 
 ## Process overview
 
