@@ -64,7 +64,7 @@ BSNk service would be used instead of this service. But because the BSNk is stil
 development, the Pseudonym Service is used.
 
 Details about documentation and implementation can be found at the
-[Pseudonym Service repository](https://github.com/minvws/nl-irealisatie-zmodules-pseudonym-service)
+[Pseudonym Service repository](https://github.com/minvws/gfmodules-pseudonym-stub)
 
 ### National Referral Index (NRI)
 
@@ -83,7 +83,7 @@ Service or the Health application to fetch the actual metadata.
 All the data models available in the Addressing Register are based on [HL7 FHIR R4](https://hl7.org/fhir/R4/)
 
 Details about documentation and implementation can be found at the
-[Addressing Register repository](https://github.com/minvws/nl-irealisatie-zmodules-addressing-register)
+[Addressing Register repository](https://github.com/minvws/gfmodules-addressing-register)
 
 ### Localization Metadata Register (LMR)
 
@@ -123,13 +123,13 @@ The guides on setting up the individual services to work locally are described i
 | Service       | Exposed http url        | Repository link                                                                                 |
 |---------------|-------------------------|-------------------------------------------------------------------------------------------------|
 | NRI                     | <http://localhost:8501> | <https://github.com/minvws/gfmodules-national-referral-index>                         |
-| Addressing              | <http://localhost:8502> | <https://github.com/minvws/nl-irealisatie-zmodules-addressing-register>               |
+| Addressing              | <http://localhost:8502> | <https://github.com/minvws/gfmodules-addressing-register>                             |
 | LMR                     | <http://localhost:8503> | <https://github.com/minvws/gfmodules-localization-metadata-register>                  |
-| Pseudonym               | <http://localhost:8504> | <https://github.com/minvws/nl-irealisatie-zmodules-pseudonym-service>                 |
+| Pseudonym               | <http://localhost:8504> | <https://github.com/minvws/gfmodules-pseudonym-stub>                                  |
 | LRS                     | <http://localhost:8505> | <https://github.com/mInvws/gfmodules-localization-register-service>                   |
-| Qualification Admin API | <http://localhost:8506> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-admin-api>  |
-| Qualification API       | <http://localhost:8507> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-api>        |
-| Qualification Web       | <http://localhost:8508> | <https://github.com/minvws/nl-irealisatie-zmodules-qualification-register-web>        |
+| Qualification Admin API | <http://localhost:8506> | <https://github.com/minvws/gfmodules-qualification-register-admin-api>                |
+| Qualification API       | <http://localhost:8507> | <https://github.com/minvws/gfmodules-qualification-register-api>                      |
+| Qualification Web       | <http://localhost:8508> | <https://github.com/minvws/gfmodules-qualification-register-web>                      |
 
 ## Contributing
 

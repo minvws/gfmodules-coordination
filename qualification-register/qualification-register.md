@@ -16,7 +16,7 @@ The qualification register is split up in two main parts:
 
 The current setup only supplies an API for a future portal to be built.
 The API including the database model and documentation can be found at the
-[qualification-register](https://github.com/minvws/nl-irealisatie-zmodules-qualification-register)
+[qualification-register](https://github.com/minvws/gfmodules-qualification-register-admin-api)
 repository.
 
-![alt text](assets/qualification-setup.svg "qualification-setup")
+![alt text](assets/qualification-setup.png "qualification-setup")
