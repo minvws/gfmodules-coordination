@@ -13,7 +13,7 @@ Overview diagram of the process
 
 ## Interface definitions
 
-2\. [Request timeline](https://github.com/minvws/gfmodules-localization-register-service-private/blob/docs/timeline-service/docs/interface-definitions/request-timeline.md)
+2\. [Request timeline](https://github.com/minvws/gfmodules-localization-register-service/blob/main/docs/interface-definitions/request-timeline.md)
 
 3\. TODO: Request RID
 
