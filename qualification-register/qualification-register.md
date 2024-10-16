@@ -7,6 +7,14 @@ who are qualified for specific information standards. This can be used as a step
 localization process to make an initial selection of where information about a patient
 for a specific care context, also called the exchange, can be found.
 
+The qualification register is not part of GFModules main stack. Yet, it sits
+in the background for further explorations at later stages.
+
+## Disclaimer
+
+This application is currently in a PoC stage and currently under development.
+It is not intended yet to be used in a production like manner.
+
 ## Design
 
 The qualification register is split up in two main parts:
