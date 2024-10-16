@@ -20,3 +20,4 @@ In this coordination repository there are a few interfaces definitions which nee
 market healthcare provider parties.
 
 - [Fetch metadata](fetch-metadata.md)
+- [Find endpoints](find-endpoints.md)
