@@ -13,9 +13,10 @@ various applications.
 ## Introduction
 
 The GFModules project is a collection of applications aimed at improving data exchange between
-healthcare providers. Whom are the target audience for this initative. The project is the technical
-implementation of the various components of the 'Generieke Functies, lokalisatie en addressering' project of the
-Ministry of Health, Welfare and Sport of the Dutch government.
+healthcare providers, the target audience for this initiative.
+The project is the technical implementation of the various components of the 'Generieke Functies,
+lokalisatie en addressering' project of the Ministry of Health, Welfare and Sport of the Dutch government.
+All components pertain to PoC level implementation.
 
 ## Architecture
 
