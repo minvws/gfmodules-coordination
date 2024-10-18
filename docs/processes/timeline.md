@@ -15,9 +15,9 @@ Overview diagram of the process
 
 2\. [Request timeline](https://github.com/minvws/gfmodules-localization-register-service/blob/main/docs/interface-definitions/request-timeline.md)
 
-3\. TODO: Request RID
+3\. TODO: Request Pseudonym
 
-[4\. Localize health data with RID](https://github.com/minvws/gfmodules-national-referral-index/blob/main/docs/interface-definitions/lookup.md)
+[4\. Localize health data with Pseudonym](https://github.com/minvws/gfmodules-national-referral-index/blob/main/docs/interface-definitions/lookup.md)
 
 5\. TODO: Lookup base pseudonym
 

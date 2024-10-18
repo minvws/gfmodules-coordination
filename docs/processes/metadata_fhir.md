@@ -12,7 +12,7 @@ However, further resources would be added in consultation with other parties in 
 
 ## Interface definitions
 
-2\. TODO: Request RID
+2\. TODO: Request Pseudonym
 
 [3\. Fetch metadata [FHIR]](../interface-definitions/fetch-metadata.md)
 
