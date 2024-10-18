@@ -59,4 +59,5 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
 HealthcareProfessional .[#707070,thickness=2].> EPDPACS : "<color:#707070>1. Request metadata"
 EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>2. Request Pseudonym"
 EPDPACS .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>3. Fetch metadata [FHIR]"
+LocalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>4. Lookup lmr pseudonym"
 @enduml

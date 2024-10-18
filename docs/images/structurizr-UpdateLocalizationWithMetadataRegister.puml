@@ -67,4 +67,5 @@ HealthcareProfessional .[#707070,thickness=2].> EPDPACS : "<color:#707070>1. Add
 EPDPACS .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>2. Add or update metadata for a patient"
 LocalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>3. Request Pseudonym"
 LocalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>4. Update localization data"
+NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>5. Lookup nri pseudonym"
 @enduml
