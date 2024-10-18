@@ -167,7 +167,6 @@ Example response:
 
 A pseudonym send as a query parameter or as a json property is always serialized as a string
 
-
 ## Discussions
 
 ### Restrict returned properties of resource
