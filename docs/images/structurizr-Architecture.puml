@@ -72,15 +72,15 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
 
 
 LocalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Update localization data"
-NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request base Pseudonym"
+NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request NRI Pseudonym"
 LocalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>"
-LocalizationRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
-LocalizationRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data with RID"
+LocalizationRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request Pseudonym"
+LocalizationRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data with Pseudonym"
 LocalizationRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
 LocalizationRegisterService .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
-EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data with RID"
+EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data with Pseudonym"
 EPDPACS .[#707070,thickness=2].> AdressingService : "<color:#707070>Find endpoints [ITI-90]"
 EPDPACS .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>Fetch metadata [FHIR]"
-EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request RID"
+EPDPACS .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request Pseudonym"
 EPDPACS .[#707070,thickness=2].> LocalizationRegisterService : "<color:#707070>Request timeline"
 @enduml

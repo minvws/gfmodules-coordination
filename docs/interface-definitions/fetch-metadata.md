@@ -12,7 +12,7 @@ healthcare providers. The project is the technical implementation of various com
 lokalisatie en addressering' project of the Ministry of Health, Welfare and Sport of the Dutch government.
 
 The Localization Metadata Register(LMR) is a component that should be provided or delegated by all healthcare
-providers. The LMR should provide metadata for a certain RID that is linked to a BSN in the LMR.
+providers. The LMR should provide metadata for a certain Pseudonym that is linked to a BSN in the LMR.
 
 This interface description can be found at the [github repository](https://github.com/minvws/gfmodules-coordination/tree/main/docs/interface-definitions).
 
@@ -20,10 +20,10 @@ This interface description can be found at the [github repository](https://githu
 
 ## Summary
 
-This interface enables applications in the Healthcare Provider domain to fetch metadata for a patient based on the RID
+This interface enables applications in the Healthcare Provider domain to fetch metadata for a patient based on the Pseudonym
 which is retrieved from the PRS. (see [Process](#process)). This interface is build on the
 [HL7 FHIR Release 4](https://hl7.org/fhir/r4/) specification. The addition specified in this interface
-definition is the possibility to search for healthdata based on a RID.
+definition is the possibility to search for healthdata based on a Pseudonym.
 
 ![Fetch metadata](../images/structurizr-FetchMetadataInterface.svg)
 
@@ -44,7 +44,7 @@ All endpoints that are described here are only accessible behind mTLS with a val
 The LMR should set the display value of all linked resources to present all required information for
 the healthcare professional without the need of sequential queries to the LMR.
 
-Dependend on the domain, the LMR should provide a search on RID on the following endpoints:
+Dependend on the domain, the LMR should provide a search on Pseudonym on the following endpoints:
 
 - [ImagingStudies (Beeld)](#imagingstudies-beeld)
 
@@ -53,7 +53,7 @@ Dependend on the domain, the LMR should provide a search on RID on the following
 ### ImagingStudies (Beeld)
 
 The LMR should provide a search on the [ImagingStudy](https://hl7.org/fhir/r4/imagingstudy.html) FHIR resource with the
-RID as an extra property to filter on.
+Pseudonym as an extra property to filter on.
 
 <!-- markdownlint-disable MD013 -->
 |  |  |
@@ -166,8 +166,6 @@ Example response:
 #### Pseudonym
 
 A pseudonym send as a query parameter or as a json property is always serialized as a string
-
-TODO: Update pseudonym to RID when PRS implementation is finished
 
 ## Discussions
 

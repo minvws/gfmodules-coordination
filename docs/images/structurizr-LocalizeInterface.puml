@@ -42,5 +42,5 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
   rectangle "==EPD/PACS\n<size:10>[System]</size>" <<EPDPACS>> as EPDPACS
 }
 
-EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>1. Localize health data with RID"
+EPDPACS .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>1. Localize health data with Pseudonym"
 @enduml
