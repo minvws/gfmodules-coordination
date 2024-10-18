@@ -55,7 +55,7 @@ workspace {
         epdUser -> epd
         epdUser -> epd "Find Healthcare data provider endpoints"
 
-        nri -> prs "Request base Pseudonym"
+        nri -> prs "Request NRI Pseudonym"
         lmr -> prs
 
         lrs.api -> prs "Request Pseudonym"
@@ -110,7 +110,7 @@ workspace {
             epdUser -> epd "Request metadata"
             epd -> prs "Request Pseudonym"
             epd -> lmr 
-            lmr -> prs "Lookup lmr pseudonym"
+            lmr -> prs "Lookup LMR pseudonym"
         }
 
         dynamic * "UpdateLocalization" {
@@ -121,7 +121,7 @@ workspace {
             }
             epd -> prs "Create and request Pseudonym"
             epd -> nri "Update localization data"
-            nri -> prs "Lookup nri pseudonym"
+            nri -> prs "Lookup NRI pseudonym"
         }
         
         dynamic * "UpdateLocalizationWithMetadataRegister" {
@@ -130,7 +130,7 @@ workspace {
             epd -> lmr "Add or update metadata for a patient"
             lmr -> prs "Request Pseudonym"
             lmr -> nri "Update localization data"
-            nri -> prs "Lookup nri pseudonym"
+            nri -> prs "Lookup NRI pseudonym"
         }
 
         dynamic * "UpdateAddressbookReferrals" {
@@ -157,10 +157,10 @@ workspace {
             epd -> lrs "Request timeline"
             lrs -> prs "Request Pseudonym"
             lrs -> nri
-            nri -> prs "Lookup nri pseudonym"
+            nri -> prs "Lookup NRI pseudonym"
             lrs -> ads
             lrs -> lmr
-            lmr -> prs "Lookup lmr pseudonym"
+            lmr -> prs "Lookup LMR pseudonym"
         }
 
         dynamic * "LocalizeInterface" {

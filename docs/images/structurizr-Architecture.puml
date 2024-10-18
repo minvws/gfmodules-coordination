@@ -72,7 +72,7 @@ rectangle "Healthcare Provider domain" <<group2>> as group2 {
 
 
 LocalizationMetadataRegister .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Update localization data"
-NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request base Pseudonym"
+NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request NRI Pseudonym"
 LocalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>"
 LocalizationRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>Request Pseudonym"
 LocalizationRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>Localize health data with Pseudonym"
