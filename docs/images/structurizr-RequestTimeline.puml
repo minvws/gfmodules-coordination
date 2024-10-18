@@ -81,8 +81,6 @@ HealthcareProfessional .[#707070,thickness=2].> EPDPACS : "<color:#707070>1. Loo
 EPDPACS .[#707070,thickness=2].> LocalizationRegisterService : "<color:#707070>2. Request timeline"
 LocalizationRegisterService .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>3. Request Pseudonym"
 LocalizationRegisterService .[#707070,thickness=2].> NationalReferralIndex : "<color:#707070>4. Localize health data with Pseudonym"
-NationalReferralIndex .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>5. Lookup base pseudonym"
-LocalizationRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>6. Find endpoints [ITI-90]"
-LocalizationRegisterService .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>7. Fetch metadata [FHIR]"
-LocalizationMetadataRegister .[#707070,thickness=2].> PseudonymReferenceService : "<color:#707070>8. Lookup base pseudonym"
+LocalizationRegisterService .[#707070,thickness=2].> AdressingService : "<color:#707070>5. Find endpoints [ITI-90]"
+LocalizationRegisterService .[#707070,thickness=2].> LocalizationMetadataRegister : "<color:#707070>6. Fetch metadata [FHIR]"
 @enduml

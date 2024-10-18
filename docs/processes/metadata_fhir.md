@@ -15,5 +15,3 @@ However, further resources would be added in consultation with other parties in 
 2\. TODO: Request Pseudonym
 
 [3\. Fetch metadata [FHIR]](../interface-definitions/fetch-metadata.md)
-
-4\. TODO: Lookup base pseudonym

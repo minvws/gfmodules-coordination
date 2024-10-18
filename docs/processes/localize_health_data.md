@@ -19,5 +19,3 @@ Diagram of the overview
 2\. TODO: Request Pseudonym
 
 [3\. Localize health data with Pseudonym](https://github.com/minvws/gfmodules-national-referral-index/blob/main/docs/interface-definitions/lookup.md)
-
-4\. TODO: Request base pseudonym

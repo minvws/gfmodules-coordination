@@ -19,10 +19,6 @@ Overview diagram of the process
 
 [4\. Localize health data with Pseudonym](https://github.com/minvws/gfmodules-national-referral-index/blob/main/docs/interface-definitions/lookup.md)
 
-5\. TODO: Lookup base pseudonym
+5\. TODO: Find endpoints
 
-6\. TODO: Find endpoints
-
-[7\. Fetch metadata [FHIR]](../interface-definitions/fetch-metadata.md)
-
-8\. TODO: Lookup base pseudonym
+[6\. Fetch metadata [FHIR]](../interface-definitions/fetch-metadata.md)
