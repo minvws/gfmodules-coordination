@@ -16,7 +16,7 @@ This codebase:
 The code examples are *only* meant to help understand concepts and demonstrate possibilities.
 
 By using or referencing this code, you acknowledge that you do so at your own risk and that
-subject to change.
+the authors assume no liability for any consequences of its use.
 
 ## Context
 
